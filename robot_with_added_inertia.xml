@@ -1,0 +1,48 @@
+<mujoco model="arm_no_added_inertia">
+  <compiler angle="degree"/>
+  <option gravity="0 0 -9.81" timestep="0.002"/>
+
+  <worldbody>
+    <body name="base" pos="0 0 0">
+      <body name="link1" pos="0 0 0.0">
+        <inertial pos="0 0 0.15" mass="2.0"
+                  diaginertia="0.0056 0.0056 0.0056"/>
+        <joint name="j1" type="hinge" axis="0 0 1"
+               limited="false" armature="1.281"/>
+        <geom type="capsule" fromto="0 0 0  0 0 0.3"
+              size="0.04" rgba="0.8 0.1 0.1 1"/>
+
+        <body name="link2" pos="0 0 0.3">
+          <inertial pos="0 0 0.15" mass="1.5"
+                    diaginertia="0.0081 0.0081 0.0081"/>
+          <joint name="j2" type="hinge" axis="0 1 0"
+                 limited="false" armature="0.605"/>
+          <geom type="capsule" fromto="0 0 0  0 0 0.3"
+                size="0.035" rgba="0.1 0.8 0.1 1"/>
+
+          <body name="link3" pos="0 0 0.3">
+            <inertial pos="0 0 0.15" mass="1.0"
+                      diaginertia="0.0217 0.0217 0.0217"/>
+            <joint name="j3" type="hinge" axis="0 1 0"
+                   limited="false" armature="0.451"/>
+            <geom type="capsule" fromto="0 0 0  0 0 0.3"
+                  size="0.03" rgba="0.1 0.1 0.8 1"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="j1_motor" joint="j1" kp="50"/>
+    <position name="j2_motor" joint="j2" kp="50"/>
+    <position name="j3_motor" joint="j3" kp="50"/>
+  </actuator>
+
+  <sensor>
+    <jointpos name="j1_pos" joint="j1"/>
+    <jointpos name="j2_pos" joint="j2"/>
+    <jointpos name="j3_pos" joint="j3"/>
+  </sensor>
+</mujoco>
+
